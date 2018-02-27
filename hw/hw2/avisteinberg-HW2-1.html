@@ -1,0 +1,69 @@
+<html>
+<head>
+    <style type="text/css">
+        .imgStyle
+        {
+            width:70px;
+            height:70px;
+            border:1px solid grey;
+        }
+    </style>
+</head>
+<body>
+    <img id="mainImage" style="border:3px solid grey" 
+         src="baseball.jpeg" height="400px" width="400px"/>
+    <br />
+    <div id="divId" onclick="changeImageOnClick(event)">
+        <img class="imgStyle" src="baseball.jpeg" />
+        <img class="imgStyle" src="basketball.jpeg" />
+        <img class="imgStyle" src="bat.jpg" />
+        <img class="imgStyle" src="blacklab.jpg" />
+        <br><br>
+        <img class="imgStyle" src="boxer.jpeg" />
+        <img class="imgStyle" src="football.jpg" />
+        <img class="imgStyle" src="kitten.jpg" />
+        <img class="imgStyle" src="lion.jpg" />
+        <br><br>
+        <img class="imgStyle" src="tennisball.jpeg" />
+        <img class="imgStyle" src="macaw.jpg" />
+        <img class="imgStyle" src="monkey.jpg" />
+        <img class="imgStyle" src="owl.jpg" />
+        <br><br>
+        <img class="imgStyle" src="panda.jpg" />
+        <img class="imgStyle" src="racket.jpeg" />
+        <img class="imgStyle" src="sloth.png" />
+        <img class="imgStyle" src="soccerball.jpg" />
+        <br><br>
+    </div>
+    <script type="text/javascript">
+
+        var images = document.getElementById("divId")
+                             .getElementsByTagName("img");
+
+        for (var i = 0; i < images.length; i++)
+        {
+            images[i].onmouseover = function ()
+            {
+                this.style.cursor = 'hand';
+                this.style.borderColor = 'red';
+            }
+            images[i].onmouseout = function ()
+            {
+                this.style.cursor = 'pointer';
+                this.style.borderColor = 'grey';
+            }
+        }
+
+        function changeImageOnClick(event)
+        {
+            event = event || window.event;
+            var targetElement = event.target || event.srcElement;
+
+            if (targetElement.tagName == "IMG")
+            {
+                mainImage.src = targetElement.getAttribute("src");
+            }
+        }
+    </script>
+</body>
+</html>

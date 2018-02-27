@@ -1,0 +1,180 @@
+<CTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html bgcolor="#0000FF">
+  <head>
+    <title>HTML Form</title>
+    <script type="text/javascript">
+      function dateValidation()
+      {
+           var Months = document.getElementById("monthSelect"); 
+           var selectedMonth = Months.options[Months.selectedIndex].value;
+            // Pull out selected month, year and day values and check it they are valid
+          var longMonths = new Array("Jan", "Mar", "May", "Jul", "Aug", "Oct", "Dec");
+          var shortMonths = new Array("Apr", "Jun", "Sep", "Nov");
+
+          var Years =  document.getElementById("yearSelect"); 
+          var selectedYear = Years.options[Years.selectedIndex].value;
+          
+          var Days =  document.getElementById("daySelect") 
+          var selectedDay = Days.options[Days.selectedIndex].value;
+          alert ("Got your form");
+ 
+          var leapYear = false;
+          var daysInMonth = 31;
+          if (selectedYear % 4 == 0 & selectedYear % 100 == 0 & selectedYear % 400 == 0)  
+          {
+                leapYear = true;
+          }
+         
+          if (selectedMonth in shortMonths)
+          {
+               daysInMonth = 30;
+          }
+          else if (selectedMonth == "Feb" & leapYear == true)
+          {
+               daysInMonth = 29;
+          }
+          else
+          {
+               daysInMonth =  28;
+          }
+          // Check if seleced Day is in proper range (less than daysInMonth)
+          if (selectedDay > daysInMonth) {
+                alert("Impossible birthday. Please resubmit form.");
+                return false;
+          }
+          else {
+                return true;
+          }
+        
+      }
+      function ssnValidation() {
+            var ssn = document.getElementById("ssn").value;
+            ssn = ssn.toString()
+            if (ssn.length != 9)  {
+                alert("You must enter 9 digits for your ssn. Please Re-Enter")
+                return false;
+            }
+            else {
+                return true;
+            } 
+      }
+      function checkNames() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var loanAmount = document.getElementById("loanAmount").value;
+            if ( firstName == "") {
+                alert("First name text box was left blank. Please re-enter");
+                return false;
+            }
+            else if( lastName == "") {
+                alert("Last name text box was left blank. Please re-enter");
+                return false;
+            }
+            else if( loanAmount == "") {
+                alert("Loan Amount text box was left blank. Pleast re-enter");
+                return false;
+            } 
+           else {
+                return true;
+            }
+      }
+
+            
+
+      function onSubmitFn()
+      {
+         return (checkNames()&& ssnValidation() && dateValidation() );
+      }
+
+      function onResetFn()
+      {
+        alert ("In reset function, this will clear all values of the form");
+      }
+    </script>
+  </head>
+
+  <!------ Body of the HTML page ------ >
+<body bgcolor="#444444" onload="alert ('Welcome to Columbia University!')">
+
+<!--  <body bgcolor="#EEEEFF" onload="alert ('Welcome to Columbia University!')"
+    onunload="alert ('Thank you for your interest!')">-->
+    <hr>
+    <h1>Simple HTML application form:</h1>
+    <hr>
+    <br />
+    <form onsubmit="return onSubmitFn()"
+      onreset="onResetFn()"
+      name="SimpleForm" method="post"
+      action="./Submit.html"> <!-- Once the form is submitted, the browswer is redirected to ApplicationSubmission.html page -->
+
+      First name: <input type="text" id="firstName" name="firstname"><br /><br />
+
+      Last name:  <input type="text" id="lastName" name="lastname"><br />
+     
+      SSN:  <input type="number" id="ssn" name="ssn"><br />
+       
+      Loan Amount:  <input type="text" id="loanAmount" name="loanAmount"><br />
+
+      <div id="birthday">Date of Birth</div>
+      <script>
+        var monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+                     "Nov", "Dec"];
+        //create select drop down list for months
+        var monthList = document.createElement("select");
+        monthList.setAttribute("id", "monthSelect");
+        birthday.appendChild(monthList)
+        // Create and append the options to the monthList
+        for (var i = 0; i < monthArray.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value", monthArray[i]);
+            option.text = monthArray[i];
+            monthList.appendChild(option);
+        }
+
+        //create select drop down list for days
+        var dayArray = new Array();
+        for(var i = 0; i < 31; i++) {
+            dayArray[i] = i + 1;
+        }
+        
+        // create a drop down list for days
+        var dayList = document.createElement("select");
+        dayList.setAttribute("id", "daySelect");
+        birthday.appendChild(dayList)
+        // Create and append the options to the monthList
+        for (var i = 0; i < dayArray.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value", dayArray[i]);
+            option.text = dayArray[i];
+            dayList.appendChild(option);
+        }
+        //create select drop down list for years
+        var yearArray = new Array();
+        for(var i = 0; i < 95; i++) {
+            yearArray[i] = 2017- i;
+        }
+        // create a drop down list for days
+        var yearList = document.createElement("select");
+        yearList.setAttribute("id", "yearSelect");
+        birthday.appendChild(yearList)
+        // Create and append the options to the monthList
+        for (var i = 0; i < yearArray.length; i++) {
+            var option = document.createElement("option");
+            option.setAttribute("value", yearArray[i]);
+            option.text = yearArray[i];
+            yearList.appendChild(option);
+        }  
+      </script>
+
+      Text Area:<br />
+
+      <textarea rows="20" cols="70">
+Please enter any other relevant information here. </textarea><br />
+
+      <input type="submit" value="Submit" name="submitButton">
+      <input type="reset" value="Reset" name="resetButton">
+    </form>
+    <hr>
+  </body>
+</html>
+

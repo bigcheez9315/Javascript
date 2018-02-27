@@ -1,0 +1,110 @@
+<html>
+<head>
+    <style type="text/css">
+        .imgStyle
+        {
+            width:60px;
+            height:60px;
+            border:1px solid grey;
+        }
+    </style>
+</head>
+<body>
+    <img id="mainImage" style="border:3px solid grey" 
+         src="baseball.jpeg" height="400px" width="400px"/>
+    <p id="imageDesc"></p> 
+    <br />
+    <div id="divId" onclick="changeImageOnClick(event)">
+        <img class="imgStyle" src="baseball.jpeg" alt="Baseball" />
+        <img class="imgStyle" src="basketball.jpeg" alt="Basketball" />
+        <img class="imgStyle" src="bat.jpg" alt="Baseball bat"/>
+        <img class="imgStyle" src="blacklab.jpg" alt="Black lab" />
+        <img class="imgStyle" src="boxer.jpeg" alt="Boxer" />
+        <img class="imgStyle" src="football.jpg" alt="Football"/>
+        <img class="imgStyle" src="kitten.jpg" alt="Kitten"/>
+        <img class="imgStyle" src="lion.jpg" alt="Lion"/>
+        <img class="imgStyle" src="tennisball.jpeg" alt="Tennis ball" />
+        <img class="imgStyle" src="macaw.jpg" alt="Macaw"/>
+        <img class="imgStyle" src="monkey.jpg" alt="Squirrel Monkey" />
+        <img class="imgStyle" src="owl.jpg" alt="Owl"/>
+        <img class="imgStyle" src="panda.jpg" alt="Panda" />
+        <img class="imgStyle" src="racket.jpeg" alt="Racket" />
+        <img class="imgStyle" src="sloth.png" alt="Sloth"/>
+        <img class="imgStyle" src="soccerball.jpg" alt="Soccer Ball" />
+    </div>
+    
+<form>
+      <select id="speed">
+    <option value="Slow">Slow</option>
+    <option value="Medium">Medium</option>
+    <option value="Fast">Fast</option>  
+      </select> 
+        <input type="button" value="Start Slideshow" onClick="startSlideShowFn()">
+        <input type="button" value="Stop Slideshow" onClick="stopSlideShowFn()">
+
+</form>
+    <script type="text/javascript">
+
+        var images = document.getElementById("divId")
+                             .getElementsByTagName("img");
+        var index = 1;
+        var slideshow;
+        for (var i = 0; i < images.length; i++)
+        {
+            images[i].onmouseover = function ()
+            {
+                this.style.cursor = 'hand';
+                this.style.borderColor = 'red';
+            }
+            images[i].onmouseout = function ()
+            {
+                this.style.cursor = 'pointer';
+                this.style.borderColor = 'grey';
+            }
+        }
+       function showImage()
+       {
+            if ( index >= images.length ) {
+                index = 0;
+            }
+            else{
+                 mainImage.src = images[index].getAttribute("src");
+                 getAlt(index);
+                 index = index+1;
+            }
+       }  
+       function startSlideShowFn()
+        {
+            var e = document.getElementById("speed");
+            var speed = e.options[e.selectedIndex].value;
+            if (speed == 'Slow') {
+                 slideshow =  setInterval(function(){showImage() }, 5000);
+            }
+            else if(speed == 'Medium') {
+                  slideshow =  setInterval(function(){showImage() }, 3000);
+            }
+            else if(speed == 'Fast') {
+                  slideshow =  setInterval(function(){showImage() }, 1000);
+            }
+        }
+        function stopSlideShowFn() {
+            clearInterval(slideshow);
+        }
+        function getAlt(i) {
+            var altText = images[i].getAttribute("alt");
+            document.getElementById("imageDesc").innerHTML = "Description: " + altText;
+        }
+        function changeImageOnClick(event)
+        {
+            event = event || window.event;
+            var targetElement = event.target || event.srcElement;
+
+            if (targetElement.tagName == "IMG")
+            {
+                mainImage.src = targetElement.getAttribute("src");
+            }
+        }
+        window.onload = getAlt(0);
+    </script>
+</body>
+</html>
