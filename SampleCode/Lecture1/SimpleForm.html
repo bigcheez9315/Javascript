@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html bgcolor="#0000FF">
+  <head>
+    <title>HTML Form</title>
+    <script>
+      function onSubmitFn()
+      {
+        alert ("Got your form");
+      }
+
+      function onResetFn()
+      {
+        alert ("In reset function, this will clear all values of the form");
+      }
+    </script>
+  </head>
+
+  <!------ Body of the HTML page ------ >
+<body bgcolor="#444444" onload="alert ('Welcome to Columbia University!')">
+
+<!--  <body bgcolor="#EEEEFF" onload="alert ('Welcome to Columbia University!')"
+    onunload="alert ('Thank you for your interest!')">-->
+    <hr>
+    <h1>Simple HTML application form:</h1>
+    <hr>
+    <br />
+    <form onsubmit="return onSubmitFn()"
+      onreset="onResetFn()"
+      name="SimpleForm" method="post"
+      action="./Submit.html"> <!-- Once the form is submitted, the browswer is redirected to ApplicationSubmission.html page -->
+
+      First name*: <input type="text" id="firstName" name="firstname"><br /><br />
+
+      Last name*:  <input type="text" tag="lastName" name="lastname"><br />
+
+
+      Months of a year:
+
+      <select name="Month">
+    <option value="Jan">Jan</option>
+    <option value="Feb">Feb</option>
+
+    <option value="Mar">Mar</option>
+    <option value="Apr">Apr</option>
+    <option value="May">May</option>
+    <option value="Jun">Jun</option>
+    <option value="Jul">Jul</option>
+    <option value="Aug">Aug</option>
+
+    <option value="Sep">Sep</option>
+    <option value="Oct">Oct</option>
+    <option value="Nov">Nov</option>
+    <option value="Dec">Dec</option>
+      </select>
+<br /><br />
+
+Days of a Week:
+      <select name="Day">
+
+    <option value="Sunday">Sunday</option>
+    <option value="Monday">Monday</option>
+    <option value="TUesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+      </select> <br /><br />
+
+      Text Area:<br />
+
+      <textarea rows="20" cols="70">
+Please enter any other relevant information here. </textarea><br />
+
+      <input type="submit" value="Submit" name="submitButton">
+      <input type="reset" value="Reset" name="resetButton">
+    </form>
+    <hr>
+  </body>
+</html>

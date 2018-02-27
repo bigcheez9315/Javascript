@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Simple Form</title>
+  </head>
+  <body>
+   <h3> An example to show how to accept numbers in the range 100 to 300</h3>
+    <script>
+      function myFunction()
+      {
+         val = document.myForm.id1.value;
+         if ( (val < 100) || (val > 300) )
+      {
+        alert ("Invalid value");
+      }
+     else
+      {
+            alert("Value entered is " + document.myForm.id1.value);
+      }
+      }
+    </script>
+
+    <form onsubmit="return onSubmitFn()"
+      onreset="onResetFn()"
+      name="myForm" method="post"
+      action="./Submit.html">
+
+    <input id="id1" type="number" min="100" max="300" required>
+    <button onclick="myFunction()">OK</button>
+    </form>
+  </body>
+
+</html>
+
+
+
+
+
+
+
